@@ -1,0 +1,67 @@
+#include <iostream.h>
+#include <conio.h>
+#include <stdlib.h>
+
+int fact(int num); //function prototype for factorial
+void Tocontinue();
+void input(int *num);
+
+void main()
+{
+	clrscr();
+	Tocontinue();
+	getch();
+}
+//function definition for factorial
+int fact(int *num)
+{
+	//factorial with loop
+	double fact = 1;
+    while ((*num) > 1) {
+	   fact *= (*num);
+	   --(*num);
+    }
+}
+void Tocontinue(){
+
+    //declared variable for array and size
+	int num=0;
+	char ch='\0';
+	//taking user input for array size
+	cout<<"Enter a number to get factorial: ";
+    cout<<"\nThe factorial of "<<num<<" is: "<<fact(num);
+    //call function for factorial
+    fact(&num);
+
+    //ask user if he want to continue using program
+    cout<<"\n Do you want to continue(y/n): ";
+    cin>>ch;
+    if(ch=='y'||ch=='Y'){
+        Tocontinue();
+    }   
+    else if(ch=='n'||ch=='N'){
+        exit(0);
+    }
+}	
+int input(int *num)
+{
+    char ch;
+    do
+    {
+    ch=getch();
+    if(ch>=48&&ch<=57)
+    {
+    cout<<ch;
+    *num=*num*10+(ch-48);
+    }
+    if(ch=='\b')
+    {
+    clrscr();
+    *num=*num/10;
+    cout<<*num;
+    }
+    if(ch==13)
+    {
+        return *num;
+    }}while(1);
+}

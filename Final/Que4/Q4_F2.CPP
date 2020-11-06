@@ -1,0 +1,77 @@
+#include <iostream.h>
+#include <conio.h>
+#include <stdlib.h>
+void check(int *num);		//function prototype
+void input(int *num);
+void Tocontinue();
+void main()
+{
+	clrscr();
+	Tocontinue();
+	getch();
+}
+void check (int *num)		//function definition
+{
+	int f=0;
+	for(int i=2; i<(*num); i++)		//checking for prime number
+	{
+		if((*num)%i==0)
+		{
+			f=1;
+
+		}
+	}
+	if((*num)%2==0)		//checking for even and prime number
+	{
+
+		if(f==0)
+		{
+			cout<<"It is a even prime number.\n";
+
+		}
+		else{
+		cout<<"It is an even number.\n";
+		}
+	}
+	else				//checking for odd and prime number
+	{
+
+		if(f==0)
+		{
+			cout<<"It is a odd prime number.\n";
+		}
+		else{
+		cout<<"It is a odd number.\n";
+		}
+	}
+}
+
+void Tocontinue(){
+
+    //initializing and declaring variable, array
+    int num=0;
+    char ch='\0';
+
+
+	cout<<"Enter the integer number : ";
+	input(&num);
+
+	check(&num);
+
+    //ask user if he want to continue using program
+    cout<<"\n Do you want to continue(y/n): ";
+    cin>>ch;
+    if(ch=='y'||ch=='Y'){
+	  Tocontinue();
+    }
+    else if(ch=='n'||ch=='N'){
+	  exit(0);
+    }
+}
+void input(int *num){
+    while(!(cin>>*num)){
+    cout<<"Please Enter a number:";
+    cin.clear(); // clear the error flag
+    cin.ignore(1000, '\n'); // ignore until the next newline
+    }
+}

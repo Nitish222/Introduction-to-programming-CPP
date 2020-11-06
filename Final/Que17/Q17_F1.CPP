@@ -1,0 +1,76 @@
+#include <iostream.h>
+#include <conio.h>
+
+void readA(int arry[10][10],int m,int n);
+void printA(int arry[10][10],int m,int n);
+void rowsum(int arry[10][10],int m,int n);
+void colsum(int arry[10][10],int m,int n);
+void main()
+{
+	clrscr();
+	int A[10][10];
+	int m=0,n=0;
+	cout<<"\nEnter the row limit for matrix A: ";
+	cin>>m;
+	cout<<"\nEnter the column limit for the matrix A: ";
+	cin>>n;
+
+	cout<<"\nEnter the elements for matrix A: \n";
+	readA(A, m,n);
+	cout<<"\nPrinting matrix A: \n";
+	printA(A,m,n);
+	rowsum(A,m,n);
+	colsum(A,m,n);
+	getch();
+}
+void readA(int arry[10][10], int m, int n)
+{
+	for(int i=0;i<m;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			cout<<"Enter element A"<<i+1<<j+1<<" : ";
+			cin>>arry[i][j];
+		}
+	}
+}
+
+void printA(int arry[10][10],int m,int n)
+{
+	for(int i=0;i<m;i++)
+	{
+		cout<<" | ";
+		for(int j=0;j<n;j++)
+		{
+			cout<<arry[i][j]<<" | ";
+		}
+		cout<<"\n";
+	}
+}
+
+void rowsum(int arry[10][10],int m,int n)
+{
+	int rowSum=0;
+	for(int i=0;i<m;i++)
+	{
+		rowSum=0;
+		for(int j=0;j<n;j++)
+		{
+			rowSum += arry[i][j];
+		}
+		cout<<"\nSum of row "<<i+1<<" is "<<rowSum<<"\n";
+	}
+}
+void colsum(int arry[10][10], int m,int n)
+{
+	int colSum=0;
+	for(int j=0;j<n;j++)
+	{
+		colSum=0;
+		for(int i=0;i<m;i++)
+		{
+			colSum += arry[i][j];
+		}
+		cout<<"\nSum of column "<<j+1<<" is "<<colSum<<"\n";
+	}
+}

@@ -1,0 +1,105 @@
+#include <iostream.h>
+#include <conio.h>
+
+void readA(int A[10][10],int m,int n);
+void readB(int B[10][10],int p,int q);
+void printA(int A[10][10],int m,int n);
+void printB(int B[10][10],int p,int q);
+int check_equality(int A[10][10],int B[10][10],int m,int n);
+
+void main()
+{
+	clrscr();
+	int A[10][10];
+	int B[10][10];
+	int m,n,p,q;
+	cout<<"\nEnter the row limit for matrix A: ";
+	cin>>m;
+	cout<<"\nEnter the column limit for the matrix A: ";
+	cin>>n;
+	cout<<"\nEnter the row limit for the matrix B: ";
+	cin>>p;
+	cout<<"\nEnter the column limit for the matrix B: ";
+	cin>>q;
+	if((m!=p)&&(n!=q))
+	{
+		cout<<"matrices cannot be equal!!" ;
+
+	}
+	else
+	{
+		cout<<"\nEnter the elements for matrix A: \n";
+		readA(A, m,n);
+		cout<<"\nPrinting matrix A: \n";
+		printA(A,m,n);
+		cout<<"\nEnter the elements of matrix B: \n";
+		readB(B,p,q);
+		cout<<"\n Printing matrix B: \n";
+		printB(B,p,q);
+
+		if (check_equality(A,B,m,n) == 1)
+		cout<<"\nThe matrices A and B are equal!!\n";
+		else
+		cout<<"\nThe matrices A and B are not equal!!\n";
+
+	}
+	getch();
+}
+void readA(int A[10][10], int m, int n)
+{
+	for(int i=0;i<m;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			cout<<"Enter element A"<<i+1<<j+1<<" : ";
+			cin>>A[i][j];
+		}
+	}
+}
+void readB(int B[10][10],int p,int q)
+{
+	for(int i=0;i<p;i++)
+	{
+		for(int j=0;j<q;j++)
+		{
+			cout<<"Enter element B"<<i+1<<j+1<<" : ";
+			cin>>B[i][j];
+		}
+	}
+}
+void printA(int A[10][10],int m,int n)
+{
+	for(int i=0; i<m; i++){
+		cout<<" | ";
+		for(int j = 0; j <n; j++)
+		{
+			cout <<A[i][j] <<" | ";
+		}
+		cout<<"\n";
+	}
+}
+void printB(int B[10][10],int p,int q)
+{
+	for(int i=0;i<p;i++)
+	{
+		cout<<" | ";
+		for(int j=0;j<q;j++)
+		{
+			cout<<B[i][j]<<" | ";
+		}
+		cout<<"\n";
+	}
+}
+int check_equality(int A[10][10],int B[10][10],int m,int n)
+{
+	for (int i=0; i<m; i++)
+	{
+		for (int j=0; j<n; j++)
+		{
+			if (A[i][j]==B[i][j]) // If the values are equal
+			return 1;
+		}
+	}
+	return 0;
+}
+

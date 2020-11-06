@@ -1,0 +1,20 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+
+
+void main()
+{
+	clrscr();
+	char str1[50] = "red,blue,green";
+	char str2[50] = ",";
+	cout<<"The tokens are: ";
+	char *token = strtok(str1,str2);
+	while(token)
+	{
+		cout<<"\n"<<token;
+		token = strtok(NULL,str2);
+	}
+
+	getch();
+}

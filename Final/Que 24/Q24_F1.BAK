@@ -1,0 +1,79 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+void read(int arry[5][12]);
+void print(int arry[5][12]);
+void Tocontinue();
+void main(){
+	clrscr();
+    Tocontinue();
+	getch();
+}
+
+void read(int arry[5][12])
+{
+    for(int i=0;i<5;i++)
+    {
+        cout<<"\n\nEnter the sales of salesman with id "<<i<<" : ";
+		for(int j=0; j<12; j++){
+        cout<<"\n\n Enter for "<<j<<"st month: ";
+		cin>>arry[i][j];
+	}
+    }
+}
+void print(int arry[5][12])
+{
+    int i=0,j=0;
+    cout<<"\n------------------------------------------ Months -------------------------------- \n";
+    cout<<"                  ";
+    for(i=0;i<12;i++)
+    {
+	  cout<<i+1<<"   ";
+
+    }
+    cout<<"\n Salesman ID";
+    // for( i=0;i<5;i++)
+    // {
+    //    cout<<i<<"   \t";
+
+    // }
+    for(i=0;i<5;i++)
+	   {
+          (i==0)? cout<<" "<<i+1<<" :   "
+                 :cout<<"             "<<i+1<<" :   ";
+		  for( j=0; j<12; j++){
+            cout<<arry[i][j]<<" | ";    
+            if(j==11){cout<<"\n";}
+            }
+        }
+
+    /* Loop runs from o to n, and print the array in following pattern
+    * 			   	  Months
+	Salesman 1: 0 | 1 | 2 |
+    *  		 2: 1 | 2 | 3 |
+    */
+    //cout<<"\n Element:  ";
+    
+    
+    
+}
+
+void Tocontinue(){
+
+    //initializing and declaring variable, array
+    int sales[5][12];
+    char ch='\0';
+    //reading and printing array
+    read(sales);
+    print(sales);
+    
+    //ask user if he want to continue using program
+    cout<<"\n Do you want to continue(y/n): ";
+    cin>>ch;
+    if(ch=='y'||ch=='Y'){
+    Tocontinue();
+    }
+    else if(ch=='n'||ch=='N'){
+    exit(0);
+    }
+}

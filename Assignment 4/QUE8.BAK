@@ -1,0 +1,59 @@
+#include <iostream.h>
+#include <conio.h>
+
+//function prototype for all functions
+int fib(int num); 
+void Tocontinue();
+void input(int *num);
+
+void main()
+{
+	clrscr();
+	Tocontinue();
+	getch();
+}
+//function declaration and definition for fibonnaci series
+int fib(int num)
+{
+	//base case for recursion
+	if((num==1)||(num==0))
+		return num;
+	else
+		return (fib(num-1)+fib(num-2));
+}
+
+//function fur inputing 
+void input(int *num){
+    while(!(cin>>*num)){
+    cout<<"Enter a positive integer: ";
+    cin.clear(); // clear the error flag
+    cin.ignore(1000, '\n'); // ignore until the next newline
+    }
+}
+
+//function to ask user if he want to continure using program
+void Tocontinue(){
+	int limit=0, num=0;  //initialized variables
+	char ch='\0';
+	
+	cout<<"Enter the limit for the fibonacci series: ";
+	input(&limit);
+
+	cout<<"The fibonacci series is :";
+	//loop for printing the series
+	while(num<limit)
+	{
+		cout<<" "<<fib(num);
+		num++;
+	}
+	
+	//to ask user if he wants to continue
+	cout<<"\n Do you want to continue(y/n): ";
+	cin>>ch;
+	if(ch=='y'){
+		Tocontinue();
+	}	
+	else if(ch=='n'){
+		exit(0);
+	}
+}

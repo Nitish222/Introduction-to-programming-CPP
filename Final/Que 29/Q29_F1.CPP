@@ -1,0 +1,196 @@
+#include <iostream.h>
+#include <conio.h>
+#include <stdlib.h>
+
+void mergeSort(int arry[], int n);
+int min(int x, int y);
+void merge(int arry[], int first, int last, int n_last);
+void input(int *num);
+void Tocontinue();
+void read(int arry[], int size);
+void print(int arry[], int size);
+
+void main(){
+    clrscr();
+    Tocontinue();
+    getch();
+
+}
+
+ void Tocontinue(){
+
+    //initializing and declaring variable, array
+    int size=0;
+    char ch='\0';
+
+    //taking user input for array size
+    cout<<"\nPlease Enter the size of the array: ";
+    input(&size);
+
+    int *arry = new int[size];
+
+    //if user execedes the static size
+    if(size>50){
+	cout<<"\nValid Array Size Exceded, enter size below 50!!";
+    }
+    else{
+
+    //reading and printing array
+    read(arry,size);
+    print(arry,size);
+
+    mergeSort(arry,size);
+
+    //print sorted array
+    cout<<"\n\nsorted array is: ";
+    print(arry,size);
+
+    }
+    //ask user if he want to continue using program
+    cout<<"\n Do you want to continue(y/n): ";
+    cin>>ch;
+    if(ch=='y'||ch=='Y'){
+      delete[] arry;
+    Tocontinue();
+    }
+    else if(ch=='n'||ch=='N'){
+    exit(0);
+    }
+}
+void input(int *num){
+    while(!(cin>>*num)){
+    cout<<"Please Enter a number:";
+    cin.clear(); // clear the error flag
+    cin.ignore(1000, '\n'); // ignore until the next newline
+    }
+}
+
+/* Iterative mergesort function to sort arry[0...n-1] */
+void mergeSort(int arry[], int size) 
+{ 
+    // For current size of subarrays to be merged 
+    // curr_size varies from 1 to n/2 
+
+   int curr_size;  
+    // For picking starting index of left subarray 
+    // to be merged 
+
+   int left;        
+  
+   // First merge subarrays of size 1 to create sorted subarrays of size 2, then merge subarrays 
+   // of size 2 to create sorted subarrays of size 4, and so on. 
+   
+   for (curr_size=1; curr_size<=n-1; curr_size = 2*curr_size) 
+   { 
+       
+       // Pick starting point of different subarrays of current size 
+       for (left=0; left<n-1; left += 2*curr_size) 
+       { 
+           // Find ending point of left subarray. 
+          //mid+1 is starting   
+           // point of right 
+		    if((left + curr_size - 1)<(num-1)){
+          int mid = left + curr_size - 1;
+        }
+        else{
+          int mid = n-1;
+        }
+        if((left + 2*curr_size - 1)<(num-1)){
+          int right_end = left + 2*curr_size - 1;
+        }
+        else{
+          int mid = n-1;
+        }
+  
+           // Merge Subarrays arry[left..mid] & arry[mid+1...right_end] 
+           merge(arry, left, mid, right_end); 
+       } 
+   } 
+} 
+ 
+void read(int arry[], int size)
+{
+    for(int i=0;i<size;i++)
+    {
+     cout<<"\n\nEnter the element at position "<<i<<" : ";
+     input(&arry[i]);
+    }
+}
+void print(int arry[], int size)
+{
+    cout<<"\n Position: ";
+    /* Loop runs from o to n, and print the array in following pattern
+    * Position : 0 | 1 | 2|
+    * Element :  1 | 2 | 3|
+    */
+    for(int i=0;i<size;i++)
+    {
+     cout<<i<<"   ";
+    }
+    cout<<"\n Element:  ";
+    for(i=0;i<size;i++)
+    {
+     cout<<arry[i]<<" | ";
+    }
+} 
+//function to find minimum of two integers 
+int min(int x, int y) 
+{ 
+    return (x<y)? x :y; 
+} 
+
+//Function to merge the two halves arry[first..last] and
+//arry[last+1..n_last] of array arry[]
+void merge(int arry[], int first, int last, int n_last)
+{
+    int i, j, k;
+    int n1 = last - first + 1;
+    int n2 =  n_last - last;
+
+    // create temprory arrays
+    int *L = new int[n1]; 
+    int *R = new int[n2];
+
+    //Copy data to temp arrays L[] and R[]
+    for (i = 0; i < n1; i++)
+	   L[i] = arry[first + i];
+    for (j = 0; j < n2; j++)
+	   R[j] = arry[last + 1+ j];
+
+    // Merge the temp arrays back into arry[first..n_last]
+    i = 0;
+    j = 0;
+    k = first;
+    while (i < n1 && j < n2) 
+    { 
+        if (L[i] <= R[j]) 
+        { 
+            arry[k] = L[i]; 
+            i++; 
+        } 
+        else
+        { 
+            arry[k] = R[j]; 
+            j++; 
+        } 
+        k++; 
+    } 
+  
+    // Copy the remaining elements of L[], if there are any 
+    while (i < n1) 
+    { 
+        arry[k] = L[i]; 
+        i++; 
+        k++; 
+    } 
+  
+    // Copy the remaining elements of R[], if there are any 
+    while (j < n2) 
+    { 
+        arry[k] = R[j]; 
+        j++; 
+        k++; 
+    }
+    delete[] L;
+    delete[] R; 
+} 

@@ -1,0 +1,165 @@
+#include <iostream.h>
+#include <conio.h>
+#include <stdlib.h>
+int search(int Arry[], int n, int target);
+void read(int arry[],int size);
+void print(int arry[],int size);
+void input(int *num);
+void Tocontinue();
+int insertionSort(int arry[], int size);
+void main()
+{
+    //clearing console screen of previous output
+    clrscr();
+    Tocontinue();
+    getch();
+}
+ 
+void read(int arry[], int size)
+{
+    for(int i=0;i<size;i++)
+    {
+	   cout<<"\n\nEnter the element at position "<<i<<" : ";
+        input(&arry[i]);
+    }
+}
+void print(int arry[], int size)
+{
+    cout<<"\n Position: ";
+    /* Loop runs from o to n, and print the array in following pattern
+    * Position : 0 | 1 | 2|
+    * Element :  1 | 2 | 3|
+    */
+    for(int i=0;i<size;i++)
+    {
+        cout<<i<<"   ";
+    }
+    cout<<"\n Element:  ";
+    for(i=0;i<size;i++)
+    {
+        cout<<arry[i]<<" | ";
+    }
+}
+int search(int Arry[], int n, int target) {
+	   if(n==0)
+		  return -1;
+	   int left = 0;   //variable for indices left of middle
+	   int right = n-1; //variable for indices right of middle
+	   int middle = 0; //variable for middle
+
+	   //the condition while left<=right means that left side of array is unsorted
+
+	   while(left<=right){
+		  //get middle index
+		  middle = left+(right-left)/2;
+
+		  //best case: if target is present in middle
+		  if(Arry[middle]==target)
+			 return middle;
+            
+            //middle>=left means the left side is sorted
+            if(Arry[middle]>=Arry[left]){
+
+                //here we check if the target lies on left
+                if(Arry[left]<=target&&target<Arry[middle]){
+                    
+                    right = middle-1;
+                }
+                else     
+                    left = middle+1;
+            }
+
+            //here we check if the target lies right of the middle
+            else{
+                if(Arry[middle]<target&&target<=Arry[right]){
+                    left = middle+1;
+                }
+                else
+                    right = middle-1;
+            }
+        }
+        return -1;
+    }
+
+    void Tocontinue(){
+
+    //initializing and declaring variable, array
+    int target=0,size=0;
+    char ch='\0';
+    
+    //taking user input for array size
+    cout<<"\nPlease Enter the size of the array: ";
+    input(&size);
+
+    //dynamically initialized the size of our array
+    int *arry = new int[size];
+    
+    //reading and printing array
+    read(arry,size);
+    print(arry,size);    
+
+    insertionSort(&arry,size);
+
+    //print sorted array
+    cout<<"\n\nsorted array is: ";
+    print(ptr,size);
+
+    //input number to be found in array
+    cout<<"\nPlease Enter the number to be found: ";
+    cin>>target;
+
+    //calling function for binary search
+    //parameters for our search functiona are
+    //our array
+    //the size of array
+    //number to be searched
+    int result = search(arry,size,target);
+
+    cout<<"___________________________________________";
+
+    if(result == -1){
+       cout << "\n\nElement is not present in array";
+    }
+    else{
+       cout << "\n\nElement is present at index " << result;
+    }
+
+    //ask user if he want to continue using program
+    cout<<"\n Do you want to continue(y/n): ";
+    cin>>ch;
+    if(ch=='y'||ch=='Y'){
+        delete[] arry;  //removed array from memory here
+       Tocontinue();
+    }
+    else if(ch=='n'||ch=='N'){
+       exit(0);
+    }
+}
+void input(int *num){
+    while(!(cin>>*num)){
+    cout<<"Please Enter a number:";
+    cin.clear(); // clear the error flag
+    cin.ignore(1000, '\n'); // ignore until the next newline
+    }
+}
+// Function to sort an array arry[] of size 'size'
+int insertionSort(int *arry, int size)
+{
+    int i, key, j;
+    for (i = 1; i < size; i++)
+    {
+       key = arry[i];
+       j = i - 1;
+
+       /* Move elements of arr[0..i-1], that are
+       greater than key, to one position ahead
+        of their current position */
+        while (j >= 0 && arry[j] > key) 
+        {  
+            arry[j + 1] = arry[j];  
+            j = j - 1;  
+        }  
+        arry[j + 1] = key;  
+    }
+    return arry;  
+}
